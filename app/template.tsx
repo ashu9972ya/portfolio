@@ -12,7 +12,7 @@ const variants = {
   enter: { opacity: 1 },
 };
 
-const template = ({ children }: Props) => {
+const Template = ({ children }: Props) => {
   const completion = useScrollProgress();
   return (
     <>
@@ -33,4 +33,4 @@ const template = ({ children }: Props) => {
   );
 };
 
-export default template;
+export default Template;

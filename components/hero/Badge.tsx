@@ -1,9 +1,10 @@
 "use client";
+import { ReactNode } from "react";
 import CountUp from "react-countup";
 
 type Props = {
   containerStyles: string;
-  icon: any;
+  icon: ReactNode;
   endCountNum: number;
   endCountText: string;
   badgeText: string;

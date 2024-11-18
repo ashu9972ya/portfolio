@@ -19,7 +19,7 @@ const Form = () => {
         <MessageSquare className="absolute right-6 top-4" size={20} />
       </div>
       <Button className="flex items-center gap-x-1 max-w-[166px] ">
-        Let's Talk
+        Let&apos;s Talk
         <ArrowRightIcon size={20} />
       </Button>
     </form>

@@ -6,20 +6,24 @@ import Nav from "./Nav";
 import MobileNav from "./MobileNav";
 import { usePathname } from "next/navigation";
 
-type Props = {};
 
-const Header = (props: Props) => {
+const Header = () => {
   const [header, setHeader] = useState(false);
   const pathName = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      window.scrollY > 50 ? setHeader(true) : setHeader(false);
+      if (window.scrollY > 50) {
+        setHeader(true);
+      } else {
+        setHeader(false);
+      }
     };
-
+  
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  
 
   return (
     <header

@@ -1,6 +1,5 @@
 import React from "react";
 
-type Props = {};
 import DevImg from "@/components/hero/DevImg";
 import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -135,7 +134,7 @@ const getData = <T extends { title: string }>(
 ): T | undefined => {
   return arr.find((item) => item.title === title);
 };
-const About = (props: Props) => {
+const About = () => {
   const experienceData = getData(qualificationData, "experience");
 
   return (

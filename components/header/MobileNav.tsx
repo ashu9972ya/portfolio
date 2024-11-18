@@ -11,9 +11,8 @@ import Nav from "./Nav";
 import Logo from "./Logo";
 import Socials from "../hero/Socials";
 
-type Props = {};
 
-const MobileNav = (props: Props) => {
+const MobileNav = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
