@@ -1,132 +1,35 @@
-"use client";
-import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ProjectCard from "@/components/projectcard/ProjectCard";
+import { pageMetadata } from "@/lib/site";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { ProjectGrid } from "@/components/project-grid";
 
-const projectData = [
-  {
-    image: "/work/3.png",
-    category: "fullstack",
-    name: "copyin2clicks",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    link: "https://www.copyin2clicks.com/",
-    github: "/",
-  },
-  {
-    image: "/work/4.png",
-    category: "react js",
-    name: "Project Landscape",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    link: "https://www.projectlandscape.ca/",
-    github: "/",
-  },
-  {
-    image: "/work/2.png",
-    category: "next js",
-    name: "Next Website",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/1.png",
-    category: "next js",
-    name: "Next Website",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/3.png",
-    category: "next js",
-    name: "Next Website",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/4.png",
-    category: "next js",
-    name: "Next Website",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/1.png",
-    category: "next js",
-    name: "Next Website",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/3.png",
-    category: "next js",
-    name: "Next Website",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/2.png",
-    category: "next js",
-    name: "Next Website",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    link: "/",
-    github: "/",
-  },
-];
+export const metadata: Metadata = pageMetadata(
+  "Selected work",
+  "Frontend engineering contributions to JioInsure and Bimastreet, and independent development of VidyaPulse.",
+  "/projects",
+);
 
-const uniqueCategory = [
-  "all projects",
-  ...new Set(projectData.map((item) => item.category)),
-];
-
-const Projects = () => {
-  // const [categories, setCategories] = useState(uniqueCategory);
-  const [category, setCategory] = useState("all projects");
-
-  const filteredProjects = projectData.filter((project) => {
-    return category === "all projects"
-      ? project
-      : project.category === category;
-  });
-
+export default function ProjectsPage() {
   return (
-    <section className="min-h-screen pt-12">
-      <div className="container mx-auto">
-        <h2 className="section-title mb-8 xl:mb-16 text-center mx-auto">
-          My Projects
-        </h2>
-        <Tabs defaultValue={category} className="mb-24 xl:mb-48">
-          <TabsList className="w-full grid h-full md:grid-cols-4 lg:max-w-[640px] mb-12 mx-auto md:border dark:border-none">
-            {uniqueCategory.map((category, index) => {
-              return (
-                <TabsTrigger
-                  onClick={() => setCategory(category)}
-                  key={index}
-                  value={category}
-                  className="capitalize w-[162px] md:w-auto"
-                >
-                  {category}
-                </TabsTrigger>
-              );
-            })}
-          </TabsList>
-          <div className="text-lg xl:mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {filteredProjects.map((project, index) => {
-              return (
-                <TabsContent value={category} key={index}>
-                  <ProjectCard project={project} />
-                </TabsContent>
-              );
-            })}
-          </div>
-        </Tabs>
+    <main tabIndex={-1} id="main" className="shell page-main">
+      <div className="page-heading">
+        <p className="eyebrow">A FEW THINGS I’VE HELPED BUILD</p>
+        <h1>
+          Selected <span className="serif-word">work.</span>
+        </h1>
+        <p>
+          Real projects. Practical problems. Interfaces that bring it all
+          together.
+        </p>
       </div>
-    </section>
+      <ProjectGrid />
+      <div className="page-bottom-callout">
+        <p>Your idea could be next.</p>
+        <Link href="/contact" className="text-link">
+          Let’s talk <ArrowUpRight size={18} aria-hidden="true" />
+        </Link>
+      </div>
+    </main>
   );
-};
-
-export default Projects;
+}

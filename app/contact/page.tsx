@@ -1,44 +1,77 @@
-import Form from "@/components/Form";
-import { MailIcon, HomeIcon, PhoneCall } from "lucide-react";
-const Contact = () => {
-  return (
-    <section>
-      <div className="container mx-auto">
-        <div className="grid xl:grid-cols-2 pt-12 xl:h-[480px] mb-6 xl:mb-24">
-          <div className="flex flex-col justify-center">
-            <div className="flex items-center gap-x-4 text-primary text-lg mb-4">
-              <span className="w-[30px] h-[2px] bg-primary"></span>
-              Say Hello 👋
-            </div>
-            <h1 className="h1 max-w-md mb-8">Let&apos;s Work Together</h1>
-            <p className="subtitle max-w-[400px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Veritatis, error, ipsum sit blanditiis eaque earum iusto dolor
-              vel, saepe placeat
-            </p>
-          </div>
-          <div className="hidden xl:flex w-full bg-contact_illustration_light dark:bg-contact_illustration_dark bg-contain bg-top bg-no-repeat"></div>
-        </div>
-        <div className="grid xl:grid-cols-2 mb-24 xl:mb-32">
-          <div className="flex flex-col gap-y-4 xl:gap-y-14 mb-12 xl:mb-24 text-base xl:text-lg">
-            <div className="flex items-center gap-x-8">
-              <MailIcon size={18} className="text-primary" />
-              <div>ashu9972ya@gmail.com</div>
-            </div>
-            <div className="flex items-center gap-x-8">
-              <HomeIcon size={18} className="text-primary" />
-              <div>93 Kishundaspur, Pratapgarh, UP</div>
-            </div>
-            <div className="flex items-center gap-x-8">
-              <PhoneCall size={18} className="text-primary" />
-              <div>+91 7355596996</div>
-            </div>
-          </div>
-          <Form />
-        </div>
-      </div>
-    </section>
-  );
-};
+import { pageMetadata } from "@/lib/site";
+import type { Metadata } from "next";
+import { ArrowUpRight, Code2, MapPin, Phone } from "lucide-react";
+import { ContactForm, CopyEmail } from "@/components/contact-form";
+import { profile } from "@/lib/portfolio";
 
-export default Contact;
+export const metadata: Metadata = pageMetadata(
+  "Get in touch",
+  "Contact Ashutosh Yadav about frontend development, React, Next.js, and Frontend Engineer opportunities.",
+  "/contact",
+);
+
+export default function ContactPage() {
+  return (
+    <main tabIndex={-1} id="main" className="shell page-main">
+      <div className="page-heading">
+        <p className="eyebrow">GOOD THINGS START WITH A CONVERSATION</p>
+        <h1>
+          Let’s make
+          <br />
+          <span className="serif-word">something.</span>
+        </h1>
+        <p>
+          A project, an opportunity, or a simple hello — I’d love to hear from
+          you.
+        </p>
+      </div>
+      <div className="contact-layout">
+        <div className="contact-details">
+          <p className="mono-label">DROP ME A LINE</p>
+          <a href={`mailto:${profile.email}`} className="contact-email">
+            {profile.email}
+            <ArrowUpRight size={22} aria-hidden="true" />
+          </a>
+          <CopyEmail />
+          <div className="contact-detail">
+            <MapPin size={19} aria-hidden="true" />
+            <div>
+              <span className="mono-label">FIND ME IN</span>
+              <p>{profile.location}</p>
+            </div>
+          </div>
+          <div className="contact-detail">
+            <Phone size={19} aria-hidden="true" />
+            <div>
+              <span className="mono-label">GIVE ME A CALL</span>
+              <a href={profile.phoneHref}>{profile.phone}</a>
+            </div>
+          </div>
+          <a
+            className="text-link"
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn <ArrowUpRight size={17} aria-hidden="true" />
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
+          <a className="text-link" href={profile.resume} download>
+            Download Resume <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link"
+          >
+            <Code2 size={18} aria-hidden="true" /> Explore my GitHub{" "}
+            <ArrowUpRight size={16} aria-hidden="true" />
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+        </div>
+        <ContactForm />
+      </div>
+    </main>
+  );
+}
